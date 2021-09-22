@@ -19,8 +19,8 @@ session_start();
     <section class="hero is-success is-fullheight">
         <div class="hero-body">
             <div class="container has-text-centered">
+                <h3><img src="MMLabs_dark (1).png" width="250px" height="250px"></h3>
                 <div class="column is-4 is-offset-4">
-                    <h3><img src="MMLabs_dark (1).png" width="250px" height="250px"></h3>
                     <h3 class="title has-text-grey">Desafio Labs</h3>
                     <?php
                     if(isset($_SESSION['nao_autenticado'])):
