@@ -16,3 +16,17 @@ h3
     right: 250px; 
     float:left;
 }
+table
+{
+    position: relative;
+    width: 50%;
+    right: 25%;
+    float: right;
+    text-align: center;
+    
+}
+th, td {
+    border: 1px solid black;
+    border-radius: 10px;
+    text-align: center;
+  }

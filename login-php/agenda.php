@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="pt-br">
 <?php
+session_start();
 include('verifica_login.php');
+include_once('conexao.php');
+$result_usuario = "SELECT * FROM usuario";
+$result_usuario = mysqli_query($conexao, $result_usuario);
+while($row_usuario = mysqli_fetch_assoc($result_usuario))
 ?>
-<head>
-	<meta charset="UTF-8">
-	<title>Formulário de contato</title>
-	<link rel="stylesheet" href="css/bulma.min.css">    
-</head>

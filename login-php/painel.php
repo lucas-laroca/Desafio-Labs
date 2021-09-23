@@ -2,7 +2,20 @@
 <html lang="pt-br">
 <?php
 include('verifica_login.php');
+include_once('conexao.php');
 ?>
+<script type="text/javascript" language="javascript">
+ $(document) .ready(function() {
+     $('#listar-colaborador') .DataTable({
+         "processing" : true,
+         "serverSide" : true,
+         "ajax" : {
+             "url" : "conexao.php",
+             "type": "POST"
+         }
+     });
+ } );
+ </script>
 <head>
 	<meta charset="UTF-8">
 	<title>Formulário de contato</title>
@@ -20,23 +33,19 @@ include('verifica_login.php');
                         echo $_SESSION['msg'];
                         unset($_SESSION['msg']);
                     ?>
-
-					<form action="colaborador.php" method="POST">
+					<form action="colaborador.php" method="GET">
 						<div class="field">
 							<label class="label">Nome</label>
 							<div class="control">
-								<input name="nome" class="input" type="text" placeholder="Seu nome" required name=nome/>
-                                
+								<input name="nome" class="input" type="text" placeholder="Seu nome" required name=nome/>                                
 							</div>
 						</div>
-
 						<div class="field">
 							<label class="label">Email *</label>
 							<div class="control">
 								<input name="email" class="input" type="email" placeholder="Seu email" required name=email/>
 							</div>
 						</div>
-
 						<div class="field">
 							<label class="label">Cargo</label>
 							<div class="control">
@@ -55,14 +64,12 @@ include('verifica_login.php');
 								</div>
 							</div>
 						</div>
-
 						<div class="field">
 							<label class="label">Telefone</label>
 							<div class="control">
 								<textarea name="telefone" class="input" placeholder="(00) 00000-0000" maxlength="15" required name=telefone></textarea>
 							</div>
 						</div>
-
 						<div class="field is-grouped">
 							<div class="control">
 								<button class="button is-link is-medium">Salvar</button>
@@ -78,7 +85,28 @@ include('verifica_login.php');
                     </div>
 				</div>
 			</div>
-		</div>
+            <div></div>
+            <table id="listar-colaborador" border="3"> 
+        <tr> 
+          <td>ID Colaborador</td>  
+          <td>Nome</td> 
+          <td>Email</td> 
+          <td>Cargo</td> 
+          <td>Telefone</td> 
+        </tr> 
+        
+        <tr> 
+          <td><?php echo $dados['idcolaborador']; ?></td>
+          <td><?php echo $dados['nome']; ?></td>
+          <td><?php echo $dados['email']; ?></td> 
+          <td><?php echo $dados['cargo']; ?></td> 
+          <td><?php echo $dados['telefone']; ?></td>  
+        </tr> 
+        
+        </table>
+        </div>
+        </div>
+        </table>
 	</section>
 </body>
 </html>
