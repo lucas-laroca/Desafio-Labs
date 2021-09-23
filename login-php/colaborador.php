@@ -14,6 +14,6 @@ if(mysqli_insert_id($conexao)){
     $_SESSION['msg'] = "<p style='color:green;'>Colaborador registrado com sucesso</p>";
     header("Location: painel.php");
 }else{
-    $_SESSION['msg'] = "<p style='color:red;'>Colaborador NÃO registrado </p>";
+    $_SESSION['msg'] = "<p style='color:red;'>Colaborador NÃO registrado</p>";
     header("Location: painel.php");
 }

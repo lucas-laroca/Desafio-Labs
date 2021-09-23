@@ -33,7 +33,7 @@ include_once('conexao.php');
                         echo $_SESSION['msg'];
                         unset($_SESSION['msg']);
                     ?>
-					<form action="colaborador.php" method="GET">
+					<form action="colaborador.php" method="POST">
 						<div class="field">
 							<label class="label">Nome</label>
 							<div class="control">
@@ -94,15 +94,15 @@ include_once('conexao.php');
           <td>Cargo</td> 
           <td>Telefone</td> 
         </tr> 
-        
-        <tr> 
-          <td><?php echo $dados['idcolaborador']; ?></td>
-          <td><?php echo $dados['nome']; ?></td>
-          <td><?php echo $dados['email']; ?></td> 
-          <td><?php echo $dados['cargo']; ?></td> 
-          <td><?php echo $dados['telefone']; ?></td>  
-        </tr> 
-        
+        <?php foreach($dados as $valores){ ?>
+            <tr> 
+                <td> <?php echo $valores[0]; ?></td>
+                <td> <?php echo $valores[1]; ?></td>
+                <td> <?php echo $valores[2]; ?></td>
+                <td> <?php echo $valores[3]; ?></td>
+                <td> <?php echo $valores[4]; ?></td>
+            </tr>  
+        <?php } ?>       
         </table>
         </div>
         </div>

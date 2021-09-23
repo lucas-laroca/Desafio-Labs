@@ -19,25 +19,27 @@ $qnt_linhas = mysqli_num_rows($resultado_user);
 
 $result_usuarios = "SELECT idcolaborador, nome, email, cargo, telefone FROM colaborador WHERE 1=1";
 if( !empty($resquestData['search']['value']) ){
-    $result_usuarios.=" AND (idcolaborador LIKE '".$resquestData['search']['value']."%' ";
-    $result_usuarios.=" OR nome LIKE '".$resquestData['search']['value']."%' ";
-    $result_usuarios.=" OR email LIKE '".$resquestData['search']['value']."%' ";
-    $result_usuarios.=" OR cargo LIKE '".$resquestData['search']['value']."%' ";
-    $result_usuarios.=" OR telefone LIKE '".$resquestData['search']['value']."%' ) ";
+    $result_usuarios.=" AND (idcolaborador LIKE '".addslashes( $resquestData['search']['value'])."%' ";
+    $result_usuarios.=" OR nome LIKE '".addslashes($resquestData['search']['value'])."%' ";
+    $result_usuarios.=" OR email LIKE '".addslashes($resquestData['search']['value'])."%' ";
+    $result_usuarios.=" OR cargo LIKE '".addslashes($resquestData['search']['value'])."%' ";
+    $result_usuarios.=" OR telefone LIKE '".addslashes($resquestData['search']['value'])."%' ) ";
 }
 $resultado_usuarios = mysqli_query($conexao, $result_usuarios);
 $totalFiltered = mysqli_num_rows($resultado_usuarios);
 
 
 $dados = array();
-while ( $row_usuarios = mysqli_fetch_array($resultado_usuarios) ) {
+$i = 0;
+while ($row_usuarios = mysqli_fetch_array($resultado_usuarios)){
     $dado = array ();
     $dado [] = $row_usuarios["idcolaborador"];
     $dado [] = $row_usuarios["nome"];
     $dado [] = $row_usuarios["email"];
     $dado [] = $row_usuarios["cargo"];
     $dado [] = $row_usuarios["telefone"];
-    $dados[] = $dado;
+    $i++; 
+    $dados[$i] = $dado;
 }
 $json_data = array(
     "draw" => isset ($resquestData['draw'] ),
@@ -45,4 +47,4 @@ $json_data = array(
     "recordsFiltrered"=> isset($totalFiltered),
     "data" => $dados
 );
-echo json_encode($json_data);
+//echo json_encode($json_data);
